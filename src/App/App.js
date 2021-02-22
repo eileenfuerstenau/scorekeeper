@@ -6,6 +6,7 @@ import { useState } from 'react'
 import GameForm from '../GameForm'
 import Navigation from '../Navigation'
 import Header from '../Header'
+import HistoryEntry from '../HistoryEntry'
 
 export default function App() {
   const [players, setPlayers] = useState([])
@@ -27,6 +28,10 @@ export default function App() {
       <GameForm onCreateGame={() => console.log('Create Game')} />
       <Navigation onNavigate={() => console.log('Navigate')} />
       <Header text="Hello" />
+      <HistoryEntry
+        nameOfGame="Carcassonne"
+        players={[{ name: 'heidi', score: 20 }]}
+      />
     </div>
   )
 
