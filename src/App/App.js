@@ -4,6 +4,7 @@ import Player from '../Player'
 import Button from '../Button'
 import { useState } from 'react'
 import GameForm from '../GameForm'
+import Navigation from '../Navigation'
 
 export default function App() {
   const [players, setPlayers] = useState([])
@@ -23,6 +24,7 @@ export default function App() {
       <Button text="Reset scores" onClick={resetScores} />
       <Button text="Reset all" onClick={resetAll} />
       <GameForm onCreateGame={() => console.log('Create Game')} />
+      <Navigation onNavigate={() => console.log('Navigate')} />
     </div>
   )
 
