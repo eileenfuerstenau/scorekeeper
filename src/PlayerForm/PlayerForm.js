@@ -1,14 +1,14 @@
 import './PlayerForm.css'
 
 export default function PlayerForm({ onAddPlayer }) {
-    return (
-        <form className="PlayerForm" onSubmit={handleSubmit}> 
-        <label> 
-            Add Player: 
-            <input placeholder="Player name..."/>
-        </label>
-        </form>
-    );
+  return (
+    <form className="PlayerForm" onSubmit={handleSubmit}>
+      <label>
+        Add Player:
+        <input name="player" placeholder="Player name..." />
+      </label>
+    </form>
+  )
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -19,6 +19,4 @@ export default function PlayerForm({ onAddPlayer }) {
     form.reset()
     input.focus()
   }
-
 }
-  

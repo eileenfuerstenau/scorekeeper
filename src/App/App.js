@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 export default function App() {
   const [players, setPlayers] = useState([])
+
   return (
     <div className="App">
       <PlayerForm onAddPlayer={addPlayer} />
@@ -14,8 +15,8 @@ export default function App() {
           key={player.id}
           name={player.name}
           score={player.score}
-          onPlus={onPlus(index)}
-          onMinus={onMinus(index)}
+          onPlus={() => onPlus(index)}
+          onMinus={() => onMinus(index)}
         />
       ))}
       <Button text="Reset scores" onClick={resetScores} />
