@@ -1,5 +1,5 @@
 import './App.css'
-import PlayerForm from '../PlayerForm'
+import PlayerForm from '../PlayerForm/PlayerForm'
 import Player from '../Player'
 import Button from '../Button'
 import { useState } from 'react'
