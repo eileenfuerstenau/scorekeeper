@@ -19,8 +19,8 @@ export default function App() {
           onMinus={() => onMinus(index)}
         />
       ))}
-      <Button text="Reset scores" onClick={resetScores} />
-      <Button text="Reset all" onClick={resetAll} />
+      <Button onClick={resetScores}> Reset Score </Button>
+      <Button onClick={resetAll}> Reset All </Button>
     </div>
   )
 
