@@ -25,12 +25,18 @@ export default function App() {
       ))}
       <Button text="Reset scores" onClick={resetScores} />
       <Button text="Reset all" onClick={resetAll} />
-      <GameForm onCreateGame={() => console.log('Create Game')} />
-      <Navigation onNavigate={() => console.log('Navigate')} />
+      <GameForm onCreateGame={data => console.log('Create Game', data)} />
+      <Navigation
+        activeIndex={0}
+        onNavigate={index => console.log('Navigate', index)}
+      />
       <Header text="Hello" />
       <HistoryEntry
         nameOfGame="Carcassonne"
-        players={[{ name: 'heidi', score: 20 }]}
+        players={[
+          { name: 'Heidi', score: 20 },
+          { name: 'Betty', score: 20 },
+        ]}
       />
     </div>
   )
