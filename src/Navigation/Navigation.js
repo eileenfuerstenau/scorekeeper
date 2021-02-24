@@ -1,14 +1,20 @@
 import Button from '../Button'
 import styled from 'styled-components/macro'
 
-export default function Navigation({ onNavigate, activeIndex }) {
+export default function Navigation({ onNavigate, currentPage }) {
   return (
     <Nav className="Navigation">
-      <Button isActive={activeIndex === 0} onClick={() => onNavigate(0)}>
+      <Button
+        isActive={currentPage === 'play'}
+        onClick={() => onNavigate('play')}
+      >
         {' '}
         Play
       </Button>
-      <Button isActive={activeIndex === 1} onClick={() => onNavigate(1)}>
+      <Button
+        isActive={currentPage === 'history'}
+        onClick={() => onNavigate('history')}
+      >
         {' '}
         History{' '}
       </Button>

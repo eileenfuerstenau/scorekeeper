@@ -10,38 +10,54 @@ import styled from 'styled-components/macro'
 
 export default function App() {
   const [players, setPlayers] = useState([])
+  const [currentPage, setCurrentPage] = useState('play')
 
   return (
     <Applayout>
-      <PlayerForm onAddPlayer={addPlayer} />
-      {players.map((player, index) => (
-        <Player
-          key={player.id}
-          name={player.name}
-          score={player.score}
-          onPlus={() => onPlus(index)}
-          onMinus={() => onMinus(index)}
-        />
-      ))}
-      <ButtonGrid>
-        <Button onClick={resetScores}> Reset </Button>
-        <ResetButton onClick={resetAll}> Reset All </ResetButton>
-      </ButtonGrid>
-      <GameForm onCreateGame={data => console.log('Create Game', data)} />
-      <Navigation
-        activeIndex={0}
-        onNavigate={index => console.log('Navigate', index)}
-      />
-      <Header> Header </Header>
-      <HistoryEntry
-        nameOfGame="Carcassonne"
-        players={[
-          { name: 'Heidi', score: 20 },
-          { name: 'Betty', score: 20 },
-        ]}
-      />
+      {currentPage === 'play' && (
+        <div>
+          <GameForm onCreateGame={data => console.log('Create Game', data)} />
+        </div>
+      )}
+
+      {currentPage === 'game' && (
+        <div>
+          <Header> Header </Header>
+          {players.map((player, index) => (
+            <Player
+              key={player.id}
+              name={player.name}
+              score={player.score}
+              onPlus={() => onPlus(index)}
+              onMinus={() => onMinus(index)}
+            />
+          ))}
+          <ButtonGrid>
+            <Button onClick={resetScores}> Reset </Button>
+            <ResetButton onClick={resetAll}> Reset All </ResetButton>
+          </ButtonGrid>
+        </div>
+      )}
+
+      {currentPage === 'history' && (
+        <div>
+          <HistoryEntry
+            nameOfGame="Carcassonne"
+            players={[
+              { name: 'Heidi', score: 20 },
+              { name: 'Betty', score: 20 },
+            ]}
+          />
+        </div>
+      )}
+
+      {(currentPage === 'history' || currentPage === 'play') && (
+        <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      )}
     </Applayout>
   )
+
+  // <PlayerForm onAddPlayer={addPlayer} />
 
   function onPlus(index) {
     setPlayers(players => [
