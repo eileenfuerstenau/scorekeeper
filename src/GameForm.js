@@ -1,5 +1,5 @@
-import Button from '../Button'
-import Input from '../Input/Input.js'
+import Button from './Button'
+import Input from './Input.js'
 import styled from 'styled-components/macro'
 
 export default function GameForm({ onCreateGame }) {
