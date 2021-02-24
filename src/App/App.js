@@ -2,6 +2,10 @@ import PlayerForm from '../PlayerForm/PlayerForm'
 import Player from '../Player'
 import Button from '../Button'
 import { useState } from 'react'
+import GameForm from '../GameForm'
+import Navigation from '../Navigation'
+import Header from '../Header'
+import HistoryEntry from '../HistoryEntry'
 import styled from 'styled-components/macro'
 
 export default function App() {
@@ -20,9 +24,22 @@ export default function App() {
         />
       ))}
       <ButtonGrid>
-        <Button onClick={resetScores}> Score </Button>
+        <Button onClick={resetScores}> Reset </Button>
         <ResetButton onClick={resetAll}> Reset All </ResetButton>
       </ButtonGrid>
+      <GameForm onCreateGame={data => console.log('Create Game', data)} />
+      <Navigation
+        activeIndex={0}
+        onNavigate={index => console.log('Navigate', index)}
+      />
+      <Header> Header </Header>
+      <HistoryEntry
+        nameOfGame="Carcassonne"
+        players={[
+          { name: 'Heidi', score: 20 },
+          { name: 'Betty', score: 20 },
+        ]}
+      />
     </Applayout>
   )
 
