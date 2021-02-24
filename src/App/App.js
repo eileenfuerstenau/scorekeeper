@@ -1,4 +1,3 @@
-import PlayerForm from '../PlayerForm/PlayerForm'
 import Player from '../Player'
 import Button from '../Button'
 import { useState } from 'react'
@@ -7,22 +6,38 @@ import Navigation from '../Navigation'
 import Header from '../Header'
 import HistoryEntry from '../HistoryEntry'
 import styled from 'styled-components/macro'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function App() {
   const [players, setPlayers] = useState([])
+  const [nameOfGame, setNameOfGame] = useState('')
   const [currentPage, setCurrentPage] = useState('play')
+  const [history, setHistory] = useState([])
+
+  function createGame({ nameOfGame, playerNames }) {
+    setNameOfGame(nameOfGame)
+    setPlayers(playerNames.map(name => ({ name, score: 0 })))
+    setCurrentPage('game')
+  }
+
+  function endGame() {
+    setHistory([{ players, nameOfGame, id: uuidv4() }, ...history])
+    setPlayers([])
+    setNameOfGame('')
+    setCurrentPage('play')
+  }
 
   return (
     <Applayout>
       {currentPage === 'play' && (
         <div>
-          <GameForm onCreateGame={data => console.log('Create Game', data)} />
+          <GameForm onCreateGame={createGame} />
         </div>
       )}
 
       {currentPage === 'game' && (
         <div>
-          <Header> Header </Header>
+          <Header> {nameOfGame} </Header>
           {players.map((player, index) => (
             <Player
               key={player.id}
@@ -34,21 +49,17 @@ export default function App() {
           ))}
           <ButtonGrid>
             <Button onClick={resetScores}> Reset </Button>
-            <ResetButton onClick={resetAll}> Reset All </ResetButton>
+            <Button onClick={endGame}> End Game </Button>
           </ButtonGrid>
         </div>
       )}
 
       {currentPage === 'history' && (
-        <div>
-          <HistoryEntry
-            nameOfGame="Carcassonne"
-            players={[
-              { name: 'Heidi', score: 20 },
-              { name: 'Betty', score: 20 },
-            ]}
-          />
-        </div>
+        <HistoryWrapper>
+          {history.map(({ nameOfGame, players, id }) => (
+            <HistoryEntry key={id} nameOfGame={nameOfGame} players={players} />
+          ))}
+        </HistoryWrapper>
       )}
 
       {(currentPage === 'history' || currentPage === 'play') && (
@@ -56,8 +67,6 @@ export default function App() {
       )}
     </Applayout>
   )
-
-  // <PlayerForm onAddPlayer={addPlayer} />
 
   function onPlus(index) {
     setPlayers(players => [
@@ -75,14 +84,6 @@ export default function App() {
     ])
   }
 
-  function addPlayer(name) {
-    setPlayers([...players, { name, score: 0, id: players.length + 1 }])
-  }
-
-  function resetAll() {
-    setPlayers([])
-  }
-
   function resetScores() {
     setPlayers(players.map(player => ({ ...player, score: 0 })))
   }
@@ -98,7 +99,7 @@ const ButtonGrid = styled.section`
   gap: 5px;
   grid-template-columns: 1fr 1fr;
 `
-const ResetButton = styled(Button)`
-  background-color: darksalmon;
-  border: 1px solid black;
+const HistoryWrapper = styled.div`
+  display: grid;
+  gap: 28px;
 `
