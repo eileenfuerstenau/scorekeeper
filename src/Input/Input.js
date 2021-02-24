@@ -1,8 +1,18 @@
-export default function GameForm({ labelText, placeholder, name }) {
+import styled from 'styled-components/macro'
+
+export default function Input({ labelText, placeholder, name }) {
   return (
-    <label>
+    <Label>
       {labelText}
-      <input name={name} type="text" placeholder={placeholder} />
-    </label>
+      <InputStyled name={name} type="text" placeholder={placeholder} />
+    </Label>
   )
 }
+const Label = styled.label`
+  display: grid;
+  gap: 4px;
+`
+
+const InputStyled = styled.input`
+  border: 2px solid #bbb;
+`

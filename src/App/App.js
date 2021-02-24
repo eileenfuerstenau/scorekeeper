@@ -24,7 +24,7 @@ export default function App() {
         />
       ))}
       <ButtonGrid>
-        <Button onClick={resetScores}> Score </Button>
+        <Button onClick={resetScores}> Reset </Button>
         <ResetButton onClick={resetAll}> Reset All </ResetButton>
       </ButtonGrid>
       <GameForm onCreateGame={data => console.log('Create Game', data)} />
