@@ -1,4 +1,3 @@
-import './GameForm.css'
 import Button from '../Button'
 import Input from '../Input/Input.js'
 

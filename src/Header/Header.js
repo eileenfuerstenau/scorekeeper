@@ -1,5 +1,7 @@
-import './Header.css'
+import styled from 'styled-components/macro'
 
-export default function Header({ text }) {
-  return <header className="Header"> {text}</header>
-}
+export default styled.header`
+  display: block;
+  background-color: salmon;
+  text-align: center;
+`

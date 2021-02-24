@@ -32,7 +32,7 @@ export default function App() {
         activeIndex={0}
         onNavigate={index => console.log('Navigate', index)}
       />
-      <Header text="Hello" />
+      <Header> Header </Header>
       <HistoryEntry
         nameOfGame="Carcassonne"
         players={[
