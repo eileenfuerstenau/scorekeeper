@@ -1,9 +1,10 @@
 import Button from '../Button'
 import Input from '../Input/Input.js'
+import styled from 'styled-components/macro'
 
 export default function GameForm({ onCreateGame }) {
   return (
-    <form className="GameForm" onSubmit={handleSubmit}>
+    <Form className="GameForm" onSubmit={handleSubmit}>
       <Input
         name="nameOfGame"
         labelText="Name of game"
@@ -17,7 +18,7 @@ export default function GameForm({ onCreateGame }) {
       <div>
         <Button> Create Game </Button>
       </div>
-    </form>
+    </Form>
   )
 
   function handleSubmit(event) {
@@ -32,3 +33,8 @@ export default function GameForm({ onCreateGame }) {
     form.reset()
   }
 }
+
+const Form = styled.form`
+  display: grid;
+  grid-auto-flow: row;
+`
