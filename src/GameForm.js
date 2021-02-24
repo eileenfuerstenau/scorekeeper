@@ -2,7 +2,7 @@ import Button from './Button'
 import Input from './Input.js'
 import styled from 'styled-components/macro'
 
-export default function GameForm({ onCreateGame }) {
+export default function GameForm({ onCreateGame, createGame }) {
   return (
     <Form className="GameForm" onSubmit={handleSubmit}>
       <Input
@@ -24,12 +24,12 @@ export default function GameForm({ onCreateGame }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
-    const { nameOfGame, playerNames } = form.elements // destructuring assigment
+    const { nameOfGame, playerNames } = form.elements
     onCreateGame({
       nameOfGame: nameOfGame.value,
       playerNames: playerNames.value.split(',').map(name => name.trim()),
     })
-    //"Betty, Heidi" -> soll Array sein, daher Split, trim entfernt extra Whitespace
+
     form.reset()
   }
 }
