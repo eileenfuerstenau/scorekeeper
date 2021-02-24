@@ -1,5 +1,4 @@
-import './App.css'
-import PlayerForm from '../PlayerForm'
+import PlayerForm from '../PlayerForm/PlayerForm'
 import Player from '../Player'
 import Button from '../Button'
 import { useState } from 'react'
@@ -7,12 +6,13 @@ import GameForm from '../GameForm'
 import Navigation from '../Navigation'
 import Header from '../Header'
 import HistoryEntry from '../HistoryEntry'
+import styled from 'styled-components/macro'
 
 export default function App() {
   const [players, setPlayers] = useState([])
 
   return (
-    <div className="App">
+    <Applayout>
       <PlayerForm onAddPlayer={addPlayer} />
       {players.map((player, index) => (
         <Player
@@ -23,8 +23,10 @@ export default function App() {
           onMinus={() => onMinus(index)}
         />
       ))}
-      <Button text="Reset scores" onClick={resetScores} />
-      <Button text="Reset all" onClick={resetAll} />
+      <ButtonGrid>
+        <Button onClick={resetScores}> Score </Button>
+        <ResetButton onClick={resetAll}> Reset All </ResetButton>
+      </ButtonGrid>
       <GameForm onCreateGame={data => console.log('Create Game', data)} />
       <Navigation
         activeIndex={0}
@@ -38,7 +40,7 @@ export default function App() {
           { name: 'Betty', score: 20 },
         ]}
       />
-    </div>
+    </Applayout>
   )
 
   function onPlus(index) {
@@ -69,3 +71,18 @@ export default function App() {
     setPlayers(players.map(player => ({ ...player, score: 0 })))
   }
 }
+
+const Applayout = styled.div`
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+`
+const ButtonGrid = styled.section`
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr;
+`
+const ResetButton = styled(Button)`
+  background-color: darksalmon;
+  border: 1px solid black;
+`

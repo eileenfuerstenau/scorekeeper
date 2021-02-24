@@ -16,7 +16,7 @@ export default function GameForm({ onCreateGame }) {
         placeholder="e.g. John Doe, Jane Doe"
       />
       <div>
-        <Button text="Create game" />
+        <Button> Create Game </Button>
       </div>
     </form>
   )

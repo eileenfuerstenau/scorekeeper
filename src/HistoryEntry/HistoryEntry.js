@@ -3,10 +3,10 @@ import './HistoryEntry.css'
 export default function HistoryEntry({ nameOfGame, players }) {
   return (
     <section className="HistoryEntry">
-      <h1>{nameOfGame}</h1>
+      {nameOfGame}
       <ul>
         {players.map((player, index) => (
-          <li key={index}>
+          <li key={index} className="HistoryEntry__player">
             <span>{player.name} </span>
             <span> {player.score} </span>
           </li>
