@@ -1,22 +1,15 @@
 import Button from './Button'
 import styled from 'styled-components/macro'
+import { NavLink } from 'react-router-dom'
 
 export default function Navigation({ onNavigate, currentPage }) {
   return (
-    <Nav className="Navigation">
-      <Button
-        isActive={currentPage === 'play'}
-        onClick={() => onNavigate('play')}
-      >
-        {' '}
-        Play
+    <Nav>
+      <Button as={NavLink} exact to="/">
+        Create
       </Button>
-      <Button
-        isActive={currentPage === 'history'}
-        onClick={() => onNavigate('history')}
-      >
-        {' '}
-        History{' '}
+      <Button as={NavLink} to="/history">
+        History
       </Button>
     </Nav>
   )
